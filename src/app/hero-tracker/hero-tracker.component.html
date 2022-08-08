@@ -8,19 +8,19 @@
           <td>
             <mat-form-field appearance="fill">
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Ex. Torinn" />
+              <input #name matInput placeholder="Ex. Torinn" />
             </mat-form-field>
           </td>
           <td>
             <mat-form-field appearance="fill">
               <mat-label>URL</mat-label>
-              <input matInput placeholder="Ex. dndbeyond.com" />
+              <input #url matInput placeholder="Ex. dndbeyond.com" />
             </mat-form-field>
           </td>
           <td>
             <mat-form-field appearance="fill">
               <mat-label>Max Health</mat-label>
-              <input matInput placeholder="Ex. 35" type="number" />
+              <input #maxHealth matInput placeholder="Ex. 35" type="number" />
             </mat-form-field>
           </td>
           <td>
@@ -28,6 +28,7 @@
               mat-icon-button
               color="accent"
               aria-label="Example icon button with a menu icon"
+              (click)="addHero(name.value, url.value, maxHealth.value)"
             >
               <mat-icon>person_add</mat-icon>
             </button>
@@ -37,8 +38,23 @@
     </form>
 
     <div cdkDropList (cdkDropListDropped)="drop($event)">
-      <div *ngFor="let hero of heroes" cdkDrag>
-        {{ hero }}
+      <div
+        class="example-box"
+        *ngFor="let hero of heroes; index as indexOfElement"
+        cdkDrag
+      >
+        <div>
+          <a href="{{ hero.link }}">{{ hero.name }}</a>
+        </div>
+        <div>{{ hero.currHealth }}/{{ hero.maxHealth }}</div>
+        <button
+          mat-icon-button
+          color="accent"
+          aria-label="Example icon button with a menu icon"
+          (click)="removeHero(indexOfElement)"
+        >
+          <mat-icon>person_remove</mat-icon>
+        </button>
       </div>
     </div>
   </mat-card-content>

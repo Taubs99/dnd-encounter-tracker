@@ -17,4 +17,15 @@ export class HeroTrackerComponent implements OnInit {
   drop(event: CdkDragDrop<Character[]>) {
     moveItemInArray(this.heroes, event.previousIndex, event.currentIndex);
   }
+  addHero(name, url, maxHealth) {
+    this.heroes.push({
+      name: name,
+      link: url,
+      maxHealth: maxHealth,
+      currHealth: maxHealth,
+    });
+  }
+  removeHero(index) {
+    this.heroes.splice(index, 1);
+  }
 }

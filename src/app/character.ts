@@ -1,5 +1,6 @@
 export class Character {
-  health: number;
+  currHealth: number;
+  maxHealth: number;
   name: string;
   link: string;
 }
