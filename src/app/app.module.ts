@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import { HealthCounterComponent } from './health-counter/health-counter.component';
@@ -23,6 +25,8 @@ import { HeroTrackerComponent } from './hero-tracker/hero-tracker.component';
     MatButtonModule,
     MatGridListModule,
     MatInputModule,
+    MatIconModule,
+    DragDropModule,
   ],
   declarations: [AppComponent, HealthCounterComponent, HeroTrackerComponent],
   bootstrap: [AppComponent],

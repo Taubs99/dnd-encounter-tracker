@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../character';
 
@@ -12,4 +13,8 @@ export class HeroTrackerComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  drop(event: CdkDragDrop<Character[]>) {
+    moveItemInArray(this.heroes, event.previousIndex, event.currentIndex);
+  }
 }
