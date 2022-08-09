@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character, CharacterType } from '../character';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hero-tracker',
@@ -39,5 +40,8 @@ export class HeroTrackerComponent implements OnInit {
   }
   removeHero(index) {
     this.heroes.splice(index, 1);
+  }
+  openInitiativeDialog(){
+
   }
 }

@@ -50,20 +50,33 @@
       </button>
     </form>
     <mat-divider></mat-divider>
-    <div cdkDropList cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
+
+    <div class="character-list" cdkDropList cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
       <div
         class="example-box"
         *ngFor="let hero of heroes; index as indexOfElement"
         cdkDrag
       >
+        <button mat-stroked-button target="_blank" class="hero-type">{{ hero.type }}</button>
         <div>
           <button mat-stroked-button target="_blank" class="hero-name">{{ hero.name }}
+            <a *ngIf="hero.link" mat-icon-button href="{{hero.link}}" aria-label="Go to attached link" target="_blank">
+              <mat-icon>open_in_new</mat-icon>
+            </a>
           </button>
-          <a *ngIf="hero.link" mat-icon-button href="{{hero.link}}" aria-label="Go to attached link">
-            <mat-icon>link</mat-icon>
-          </a>
         </div>
-        <div class="hero-health">{{ hero.currHealth }}/{{ hero.maxHealth }}</div>
+        <div class="hero-initiative">
+          <b>Initiative: </b>{{ hero.initiative }}
+          <button mat-icon-button (click)="openInitiativeDialog()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="hero-health">
+          <b>Curr/Max HP: </b>{{ hero.currHealth }}/{{ hero.maxHealth }}
+          <button mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
         <button
           mat-icon-button
           color="accent"
