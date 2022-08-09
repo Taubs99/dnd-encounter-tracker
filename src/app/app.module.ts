@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
@@ -27,6 +29,8 @@ import { HeroTrackerComponent } from './hero-tracker/hero-tracker.component';
     MatInputModule,
     MatIconModule,
     DragDropModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
   declarations: [AppComponent, HealthCounterComponent, HeroTrackerComponent],
   bootstrap: [AppComponent],

@@ -1,52 +1,69 @@
-<mat-card class="example-card">
-  <mat-card-title>Player Characters</mat-card-title>
+<mat-card class="player-card">
+  <mat-card-title>Initiative Tracker</mat-card-title>
   <mat-card-content>
-    <p>Add PC's below to track health during combat.</p>
+    <p>Add characters's below to track health during combat.</p>
     <form>
-      <table cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input #name matInput placeholder="Ex. Torinn" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field appearance="fill">
-              <mat-label>URL</mat-label>
-              <input #url matInput placeholder="Ex. dndbeyond.com" />
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field appearance="fill">
-              <mat-label>Max Health</mat-label>
-              <input #maxHealth matInput placeholder="Ex. 35" type="number" />
-            </mat-form-field>
-          </td>
-          <td>
-            <button
-              mat-icon-button
-              color="accent"
-              aria-label="Example icon button with a menu icon"
-              (click)="addHero(name.value, url.value, maxHealth.value)"
-            >
-              <mat-icon>person_add</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </table>
+      <mat-form-field class="new-character-type" appearance="fill">
+        <mat-label>Character Type</mat-label>
+        <mat-select [(value)]="newType">
+          <mat-option *ngFor="let characterType of characterTypes" [value]="characterType.value">
+            {{characterType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="new-character-name" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input 
+        name="nameInput"
+        [(ngModel)]="newName" matInput placeholder="Ex. Torinn" />
+      </mat-form-field>
+      <mat-form-field class="new-character-url" appearance="fill">
+        <mat-label>URL</mat-label>
+        <input
+          name="urlInput"
+          [(ngModel)]="newUrl"
+          matInput
+          placeholder="Ex. dndbeyond.com"
+        />
+      </mat-form-field>
+      <mat-form-field class="new-character-health" appearance="fill">
+        <mat-label>Max Health</mat-label>
+        <input 
+        name="healthInput"
+        [(ngModel)]="newHealth" matInput placeholder="Ex. 35" type="number" />
+      </mat-form-field>
+      <mat-form-field class="new-character-initiative" appearance="fill">
+        <mat-label>Initiative</mat-label>
+        <input 
+        name="initiativeInput"
+        [(ngModel)]="newInitiative" matInput placeholder="Ex. 14" type="number" />
+      </mat-form-field>
+      <button
+        mat-icon-button
+        color="accent"
+        aria-label="Example icon button with a menu icon"
+        (click)="addHero()"
+        class="mat-form-field-wrapper"
+        [disabled]="!newType || !newName || !newInitiative || !newHealth"
+      >
+        <mat-icon>person_add</mat-icon>
+      </button>
     </form>
-
-    <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <mat-divider></mat-divider>
+    <div cdkDropList cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)">
       <div
         class="example-box"
         *ngFor="let hero of heroes; index as indexOfElement"
         cdkDrag
       >
         <div>
-          <a href="{{ hero.link }}">{{ hero.name }}</a>
+          <button mat-stroked-button target="_blank" class="hero-name">{{ hero.name }}
+          </button>
+          <a *ngIf="hero.link" mat-icon-button href="{{hero.link}}" aria-label="Go to attached link">
+            <mat-icon>link</mat-icon>
+          </a>
         </div>
-        <div>{{ hero.currHealth }}/{{ hero.maxHealth }}</div>
+        <div class="hero-health">{{ hero.currHealth }}/{{ hero.maxHealth }}</div>
         <button
           mat-icon-button
           color="accent"

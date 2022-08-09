@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
-import { Character } from '../character';
+import { Component, OnInit, Input } from '@angular/core';
+import { Character, CharacterType } from '../character';
 
 @Component({
   selector: 'app-hero-tracker',
@@ -9,6 +9,16 @@ import { Character } from '../character';
 })
 export class HeroTrackerComponent implements OnInit {
   heroes: Array<Character> = [];
+  enemies: Array<Character> = [];
+  npcs: Array<Character> = [];
+
+  characterTypes: Array<CharacterType> = [{value:'hero', viewValue:'Hero'}, {value:'enemy', viewValue:'Enemy'}, {value:'npc', viewValue:'NPC'}]
+
+  @Input() public newName: string;
+  @Input() public newUrl: string;
+  @Input() public newHealth: number;
+  @Input() public newInitiative: number;
+  @Input() public newType: CharacterType;
 
   constructor() {}
 
@@ -17,12 +27,14 @@ export class HeroTrackerComponent implements OnInit {
   drop(event: CdkDragDrop<Character[]>) {
     moveItemInArray(this.heroes, event.previousIndex, event.currentIndex);
   }
-  addHero(name, url, maxHealth) {
+  addHero() {
     this.heroes.push({
-      name: name,
-      link: url,
-      maxHealth: maxHealth,
-      currHealth: maxHealth,
+      name: this.newName,
+      link: this.newUrl,
+      maxHealth: this.newHealth,
+      currHealth: this.newHealth,
+      type: this.newType,
+      initiative: this.newInitiative
     });
   }
   removeHero(index) {
