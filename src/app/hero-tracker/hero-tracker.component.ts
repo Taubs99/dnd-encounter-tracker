@@ -21,7 +21,7 @@ export class HeroTrackerComponent implements OnInit {
   @Input() public newInitiative: number;
   @Input() public newType: CharacterType;
 
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -42,6 +42,12 @@ export class HeroTrackerComponent implements OnInit {
     this.heroes.splice(index, 1);
   }
   openInitiativeDialog(){
-
+    this.dialog.open(HeroTrackerInitiativeDialogComponent);
   }
 }
+
+@Component({
+  selector: 'hero-tracker-initiative-dialog',
+  templateUrl: './hero-tracker-initiative-dialog.html',
+})
+export class HeroTrackerInitiativeDialogComponent {}
