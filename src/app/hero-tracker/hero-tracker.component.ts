@@ -2,6 +2,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit, Input } from '@angular/core';
 import { Character, CharacterType } from '../character';
 import {MatDialog} from '@angular/material/dialog';
+import { HeroTrackerInitiativeDialogComponent } from './hero-tracker-initiative-dialog/hero-tracker-initiative-dialog.component'
+import { HeroTrackerHealthDialogComponent } from './hero-tracker-health-dialog/hero-tracker-health-dialog.component'
 
 @Component({
   selector: 'app-hero-tracker',
@@ -37,17 +39,39 @@ export class HeroTrackerComponent implements OnInit {
       type: this.newType,
       initiative: this.newInitiative
     });
+
+    this.sortList();
   }
   removeHero(index) {
     this.heroes.splice(index, 1);
+
+    this.sortList();
   }
-  openInitiativeDialog(){
-    this.dialog.open(HeroTrackerInitiativeDialogComponent);
+  openInitiativeDialog(character: Character){
+    const dialogRef = this.dialog.open(HeroTrackerInitiativeDialogComponent, {
+      data: {initiative: character.initiative},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined){
+        character.initiative = result;
+
+        this.sortList();
+      }
+    });
+  }
+  openHealthDialog(character: Character){
+    const dialogRef = this.dialog.open(HeroTrackerHealthDialogComponent, {
+      data: {currHealth: character.currHealth},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined){
+        character.currHealth = result;
+      }
+    });
+  }
+  sortList(){
+    this.heroes.sort((a, b) => a.initiative - b.initiative);
   }
 }
-
-@Component({
-  selector: 'hero-tracker-initiative-dialog',
-  templateUrl: './hero-tracker-initiative-dialog.html',
-})
-export class HeroTrackerInitiativeDialogComponent {}

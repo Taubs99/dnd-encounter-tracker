@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AppComponent } from './app.component';
 import { HealthCounterComponent } from './health-counter/health-counter.component';
 import { HeroTrackerComponent } from './hero-tracker/hero-tracker.component';
+import { HeroTrackerInitiativeDialogComponent } from './hero-tracker/hero-tracker-initiative-dialog/hero-tracker-initiative-dialog.component';
+import { HeroTrackerHealthDialogComponent } from './hero-tracker/hero-tracker-health-dialog/hero-tracker-health-dialog.component';
 
 @NgModule({
   imports: [
@@ -33,7 +35,7 @@ import { HeroTrackerComponent } from './hero-tracker/hero-tracker.component';
     MatDividerModule,
     MatDialogModule,
   ],
-  declarations: [AppComponent, HealthCounterComponent, HeroTrackerComponent],
+  declarations: [AppComponent, HealthCounterComponent, HeroTrackerComponent, HeroTrackerInitiativeDialogComponent, HeroTrackerHealthDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

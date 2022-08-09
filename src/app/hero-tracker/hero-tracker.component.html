@@ -67,13 +67,13 @@
         </div>
         <div class="hero-initiative">
           <b>Initiative: </b>{{ hero.initiative }}
-          <button mat-icon-button (click)="openInitiativeDialog()">
+          <button mat-icon-button (click)="openInitiativeDialog(hero)">
             <mat-icon>edit</mat-icon>
           </button>
         </div>
         <div class="hero-health">
           <b>Curr/Max HP: </b>{{ hero.currHealth }}/{{ hero.maxHealth }}
-          <button mat-icon-button>
+          <button mat-icon-button (click)="openHealthDialog(hero)">
             <mat-icon>edit</mat-icon>
           </button>
         </div>
