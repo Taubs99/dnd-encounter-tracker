@@ -72,6 +72,6 @@ export class HeroTrackerComponent implements OnInit {
     });
   }
   sortList(){
-    this.heroes.sort((a, b) => a.initiative - b.initiative);
+    this.heroes.sort((a, b) => b.initiative - a.initiative);
   }
 }

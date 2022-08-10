@@ -9,6 +9,8 @@ import { Character, CharacterType } from '../../character';
 })
 export class HeroTrackerHealthDialogComponent implements OnInit {
 
+  healthToAddRemove: number = 0;
+
   constructor(
     public dialogRef: MatDialogRef<HeroTrackerHealthDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -20,6 +22,14 @@ export class HeroTrackerHealthDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  addHealth(){
+    this.data.currHealth += this.healthToAddRemove;
+  }
+
+  removeHealth(){
+    this.data.currHealth -= this.healthToAddRemove;
   }
 
 }
