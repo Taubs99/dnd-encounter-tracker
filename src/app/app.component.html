@@ -1,1 +1,13 @@
-<app-hero-tracker></app-hero-tracker>
+<app-toolbar [(currentTab)]="currentTab"></app-toolbar>
+
+<!-- HOME COMPONENT - display this if our tab is set to 'home' -->
+<app-home *ngIf="currentTab=='home'"></app-home>
+
+<!-- TRACKER COMPONENT - display this if our tab is set to 'tracker' -->
+<app-tracker *ngIf="currentTab=='tracker'"></app-tracker>
+
+<!-- PARTIES COMPONENT - display this if our tab is set to 'parties' -->
+<app-parties *ngIf="currentTab=='parties'"></app-parties>
+
+<!-- ENCOUNTERS COMPONENT - display this if our tab is set to 'encounters' -->
+<app-encounters *ngIf="currentTab=='encounters'"></app-encounters>

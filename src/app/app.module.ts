@@ -3,16 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroTrackerComponent } from './hero-tracker/hero-tracker.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PartiesComponent } from './parties/parties.component';
+import { EncountersComponent } from './encounters/encounters.component';
+import { TrackerComponent } from './tracker/tracker.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroTrackerComponent
+    ToolbarComponent,
+    PartiesComponent,
+    EncountersComponent,
+    TrackerComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
