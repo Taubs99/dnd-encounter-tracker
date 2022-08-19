@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ApiGatewayService } from 'src/app/services/api-gateway.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { Observable, Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,8 +21,7 @@ export class MonsterManualComponent implements OnInit {
   monsterData: Array<any> = [];
 
   searchTerm: string = "";
-
-  
+  currentSearch?: Subscription;
 
   ngOnInit(): void {
     this.getPageOfMonsters();
@@ -29,21 +29,32 @@ export class MonsterManualComponent implements OnInit {
 
   getPageOfMonsters(){
     if (this.currPage > 0) {
-      this.api.fetchMonsterList(this.currPage + 1, this.searchTerm).subscribe( (response: any ) => {
-        console.log(response)
+      this.currentSearch = this.api.fetchMonsterList(this.currPage, this.searchTerm).subscribe( (response: any ) => {
         this.monsterData = this.monsterData.concat(response.results);
 
-        if (response.next != null){
-          this.currPage++;
-        }
-        else {
-          this.currPage=-1;
+        if (response.next == null){
+          this.currPage= -1;
         }
       });
     }
   }
 
   onScroll(){
+    this.currPage++;
+    this.getPageOfMonsters();
+  }
+
+  searchTermChanged(event: any){
+    console.log("reset")
+    // Clear our search results
+    this.monsterData = [];
+    this.currPage = 1;
+
+    // If we're already doing a search, unsubscribe from it
+    if (!this.currentSearch?.closed){
+      this.currentSearch?.unsubscribe();
+    }
+
     this.getPageOfMonsters();
   }
 }
