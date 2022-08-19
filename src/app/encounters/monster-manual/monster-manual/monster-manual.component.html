@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Search">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="getPageOfMonsters()">Search</button>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+        <ul class="list-group search-results" 
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="20"
+        [scrollWindow]="false"
+        (scrolled)="onScroll()">
+            <li class="list-group-item d-flex monster-list-header">
+                <b>Name</b>
+                <b class="text-center ms-auto" style="width: 7.5%;">Health</b>
+                <b class="text-center" style="width: 5%;">CR</b>
+                <div style="width: 10%;"></div>
+            </li>
+            <li *ngFor="let monster of monsterData" class="list-group-item d-flex monster-list">
+                <p class="m-0">{{monster.name}}</p>
+                <p class="m-0 text-center ms-auto" style="width: 7.5%;">{{monster.hit_points}}</p>
+                <p class="m-0 text-center" style="width: 5%;">{{monster.challenge_rating}}</p>
+                <div style="width:10%;">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="number" placeholder="1" min=1>
+                        <button class="btn btn-success">
+                            <fa-icon [icon]="faPlusCircle" class="col-12 d-table-cell align-bottom" size="lg"></fa-icon>
+                        </button>                    
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
