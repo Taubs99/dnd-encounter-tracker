@@ -1,1 +1,37 @@
-<app-monster-manual></app-monster-manual>
+<div class="row ps-2 pe-2 mt-2 d-flex">
+    <div [ngClass]="{'col-12': !activeEncounter, 'col-6': activeEncounter && !creatingNewEncounter, 'col-4': activeEncounter && creatingNewEncounter}">
+        <div *ngIf="encounters.length > 0" class="card">
+            <div class="card-header">
+              <p class="h3">Stored Encounters</p>
+            </div>
+            <div class="card-body">
+              <ol class="list-group">
+                <li class="party-list-item list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <h5 class="lead">Create a new encounter</h5>
+                  </div>
+                </li>
+                <li *ngFor="let encounter of encounters | slice: (page-1) * pageSize : page * pageSize" (click)="changeSelected(encounter)" [ngClass]="{'active-party' : activeEncounter == encounter}" class="party-list-item list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <h5 class="fw-bold">{{encounter.name}}</h5>
+                    {{encounter.description}}
+                  </div>
+                </li>
+              </ol>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="activeEncounter" [ngClass]="{'col-6': activeEncounter && !creatingNewEncounter, 'col-4': activeEncounter && creatingNewEncounter}">
+        <div class="card">
+            <div class="card-header">
+              <p class="h3">{{activeEncounter.name}}</p>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="activeEncounter && creatingNewEncounter" class="col-4">
+        <app-monster-manual></app-monster-manual>
+    </div>
+</div>

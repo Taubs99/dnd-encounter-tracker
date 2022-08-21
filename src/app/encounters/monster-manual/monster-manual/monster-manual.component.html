@@ -17,18 +17,18 @@
         [infiniteScrollThrottle]="20"
         [scrollWindow]="false"
         (scrolled)="onScroll()">
-            <li class="list-group-item d-flex monster-list-header">
-                <b>Name</b>
-                <b class="text-center ms-auto" style="width: 7.5%;">Health</b>
-                <b class="text-center" style="width: 5%;">CR</b>
-                <div style="width: 10%;"></div>
+            <li class="list-group-item d-flex monster-list-header row">
+                <b class="col-4">Name</b>
+                <b class="text-center ms-auto col-3">Health</b>
+                <b class="text-center col-3">CR</b>
+                <div class="col-2"></div>
             </li>
             <ng-container *ngIf="monsterData.length > 0; else noMonsters">
                 <li  *ngFor="let monster of monsterData" class="list-group-item d-flex monster-list">
-                    <p class="m-0">{{monster.name}}</p>
-                    <p class="m-0 text-center ms-auto" style="width: 7.5%;">{{monster.hit_points}}</p>
-                    <p class="m-0 text-center" style="width: 5%;">{{monster.challenge_rating}}</p>
-                    <div style="width:10%;">
+                    <p class="m-0 col-4">{{monster.name}}</p>
+                    <p class="m-0 text-center ms-auto col-3">{{monster.hit_points}}</p>
+                    <p class="m-0 text-center col-3">{{monster.challenge_rating}}</p>
+                    <div class="col-2">
                         <div class="input-group">
                             <input class="form-control form-control-sm" type="number" placeholder="1" min=1>
                             <button class="btn btn-success">
