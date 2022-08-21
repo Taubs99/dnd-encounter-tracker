@@ -1,6 +1,9 @@
 import { Hero } from "./hero";
 
 export class Party extends Array<Hero>{
+    name: string;
+    description?: string;
+
     public addToParty(hero: Hero){
         this.push(hero);
     }
@@ -11,5 +14,15 @@ export class Party extends Array<Hero>{
         if (index > -1){
             this.splice(index, 1);
         }
+    }
+
+    constructor(
+        name: string,
+        description?: string
+        ){
+        super()
+
+        this.name = name;
+        this.description = description;
     }
 }

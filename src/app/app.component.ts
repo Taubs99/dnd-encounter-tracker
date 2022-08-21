@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'encounter-tracker';
-  currentTab = 'home'
+  currentTab = 'parties'
 
   changeTab(newTab: string){
     this.currentTab = newTab;
