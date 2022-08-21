@@ -4,10 +4,14 @@ export interface Base {
     url?: string;
 
     // Health Properties
-    currentHealth: number;
+    currentHealth?: number;
     maxHealth: number;
 
     // AC/Initiative
     armourClass: number;
     initiative?: number;
+}
+
+export class StatBlock {
+
 }

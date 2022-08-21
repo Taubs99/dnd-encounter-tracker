@@ -6,9 +6,9 @@ export class Hero implements Base{
     url?: string;
 
     // Health Properties
-    currentHealth: number;
+    currentHealth?: number;
     maxHealth: number;
-    tempHealth: number;
+    tempHealth?: number;
 
     // AC/Initiative
     armourClass: number;
