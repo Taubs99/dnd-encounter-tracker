@@ -10,6 +10,4 @@ export interface Base {
     // AC/Initiative
     armourClass: number;
     initiative?: number;
-<<<<<<< HEAD
-=======
 }
